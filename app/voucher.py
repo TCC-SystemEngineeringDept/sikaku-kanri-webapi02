@@ -25,3 +25,10 @@ def get_voucher_item(ID:str,token:str):
 def add_voucher_item(ID:str,DATE:str,token:str):
     return {"message": "voucher was added successfully", "voucher": {{"ID": "FESG" , "DATE": "2024/06/20"}}}
 	
+@app.post("/add")
+def add_voucher_item(voucher_id: Integer, voucher_name: Varchar, voucher_date: DATE, db: Session = Depends(get_db)):
+    new_voucher = new_voucher(voucher_id=voucher_id, voucher_name=voucher_name, voucher_date=voucher_date)
+    db.add(new_voucher)
+    db.commit()
+    db.refresh(new_voucher)
+    return {"message": "voucher was added successfully", "voucher": {{"ID": "FESG" , "DATE": "2024/06/20"}}}
