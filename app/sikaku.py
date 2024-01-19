@@ -22,8 +22,8 @@ def get_passed_item(ID:str,token:str):
         return {}
 
 @app.post("/add")
-def add_sikaku_item(sikaku_id:Integer,sikaku_name:Varchar):
-    sikaku_id = new_sikaku(sikaku_id=sikaku_id, sikaku_name=sikaku_name)
+def add_sikaku(sikaku_id: Integer,sikaku_name: Varchar, db: Session = Depends(get_db)):
+    new_sikaku = sikaku(sikaku_id=sikaku_id, sikaku_name=sikaku_name)
     db.add(new_sikaku)
     db.commit()
     db.refresh(new_sikaku)
