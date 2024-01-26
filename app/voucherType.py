@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from db SessionLocal import VoucherType
 
 app = FastAPI()
 
