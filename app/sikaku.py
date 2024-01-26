@@ -22,5 +22,9 @@ def get_passed_item(ID:str,token:str):
         return {}
 
 @app.post("/add")
-def add_passed_item(ID:str,DATE:str,token:str):
+def add_sikaku(sikaku_id: Integer,sikaku_name: Varchar, db: Session = Depends(get_db)):
+    new_sikaku = sikaku(sikaku_id=sikaku_id, sikaku_name=sikaku_name)
+    db.add(new_sikaku)
+    db.commit()
+    db.refresh(new_sikaku)
     return {"message": "Passed was added successfully", "Passed": {{"ID": "FE00", "DATE": "2022/06/18"},}}
