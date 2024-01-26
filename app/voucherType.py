@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from db SessionLocal import VoucherType
+from db import SessionLocal ,VoucherType
 
 app = FastAPI()
 
@@ -23,7 +23,7 @@ def get_voucherTyper_list(token:str Session = Depends(get_db)):
 
 @app.get("/{ID}")
 def get_voucherType_item(ID:str,token:str):
-    Varchar = db.query(VoucherType).filter(Varchar)
+    Varchar = db.query(VoucherType).filter(VoucherType)
 
     if Varchar:
         return {"voucherType_id": VoucherType.voucherType_id,"voucherType_name": VoucherType.voucherType_name}

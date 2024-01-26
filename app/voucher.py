@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from db SessionLocal import voucher
+from db  import SessionLocal,Voucher
 
 app = FastAPI()
 
