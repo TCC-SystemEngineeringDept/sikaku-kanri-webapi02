@@ -25,27 +25,19 @@ class Item(Base):
     item_name = Column(String(100), index=True)
     price = Column(Integer)
 
-    class Item(Base):
-    __tablename__ = "items"
-
-    id = Column(Integer, primary_key=True, index=True)
-    item_id = Column(String(4), index=True)
-    item_name = Column(String(100), index=True)
-    price = Column(Integer)
-
 class exam(Base):
     __tablename__ = "exam"
 
     exam_id = Column(Integer, primary_key=True, index=True)
     exam_name = Column(Varchar(30), index=True)
-    user_id = Column(Integer, index=True)
-    user_name = Column(Varchar(30))
+
 
 class sikaku(Base):
     __tablename__ = "sikaku"
 
     sikaku_id = Column(Integer, primary_key=True, index=True)
     sikaku_name = Column(Varchar(50), index=True)
+    sikaku_date = Column(DATE)
 
 class voucher(Base):
     __tablename__ = "voucher"
