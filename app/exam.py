@@ -37,5 +37,5 @@ def add_exam_item(ID:str,NAME:str,token:str,db: Session=Depends(get_db)):
         db.comit()
         db.refresh(new_exam)
         return {"message": "Exam added successfully", 
-        "exam.exam_name": {"exam_id":new_exam.exam_id"exam_name":new_exam.exam_name}}
+        "exam.exam_name": {"exam_id":new_exam.exam_id,"exam_name":new_exam.exam_name}}
     
