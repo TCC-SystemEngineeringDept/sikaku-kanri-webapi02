@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -37,14 +37,14 @@ class sikaku(Base):
 
     sikaku_id = Column(Integer, primary_key=True, index=True)
     sikaku_name = Column(String(50), index=True)
-    sikaku_date = Column(DATE)
+    sikaku_date = Column(DateTime)
 
 class voucher(Base):
     __tablename__ = "voucher"
 
     voucher_id = Column(Integer, primary_key=True, index=True)
     voucher_name = Column(String(50), index=True)
-    voucher_date = Column(DATE)
+    voucher_date = Column(DateTime)
 
 class voucherType(Base):
     __tablename__ = "voucherType"
