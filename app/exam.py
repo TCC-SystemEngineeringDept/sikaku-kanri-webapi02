@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends HTTPException
+from sqlalchewy.orm import Session
 from db import SessionLocal, Exam
 
 app = FastAPI()
