@@ -22,6 +22,7 @@ def get_exam_list(token:str, db: Session = Depends(get_db)):
 
 @app.get("/{ID}")
 def get_exam_item(ID:str,token:str):
+    exam = db.query(Exam).filler(Exam.exam_id == ID).first()
     if exam:
         return {"exam_id": exam.exam_id, "exam_name": exam.exam_name}
     else:
@@ -37,5 +38,5 @@ def add_exam_item(ID:str,NAME:str,token:str,db: Session=Depends(get_db)):
         db.comit()
         db.refresh(new_exam)
         return {"message": "Exam added successfully", 
-        "exam.exam_name": {"exam_id":new_exam.exam_id,"exam_name":new_exam.exam_name}}
+        "exam": {"exam_id":new_exam.exam_id,"exam_name":new_exam.exam_name}}
     
