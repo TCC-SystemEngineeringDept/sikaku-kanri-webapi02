@@ -30,8 +30,8 @@ def get_sikaku_item(ID:str,token:str):
         return HTTPException(status_code=484,datail="そんな資格はないよ")
 
 @app.post("/add")
-def add_sikaku_item(ID:str,NAME:str,token:str,db: Session = Depends(get_db)):
-    new_sikaku = Sikaku(sikaku_id=ID, sikaku_name=NAME)
+def add_sikaku_item(ID:str,NAME:str,DATE:DATE,token:str,db: Session = Depends(get_db)):
+    new_sikaku = Sikaku(sikaku_id=ID, sikaku_name=NAME sikaku_date=DATE)
     if new_sikaku == "":
         return {"message":  "空なのでエラー"}
 else:
