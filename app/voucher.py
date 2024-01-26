@@ -8,27 +8,34 @@ vouchers = [
     {"ID": "OR00", "NAME": "Oracle認定資格ピアソンVUE 配信監督なし試験用", "DATE": "2023/12/25"}
 ]
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close():
+
 @app.get("/list")
-def get_voucher_list(token:str):
+def get_voucher_list(token:str Session = Depends(get_db)):
+    vouchers = db.query(Varchar).all()
     return vouchers
 
 @app.get("/{ID}")
 def get_voucher_item(ID:str,token:str):
-    if ID == "FESG":
-        return vouchers[0]
-    elif ID == "OR00":
-        return vouchers[1]
+    Varchar = db.query(Varchar).filter(Varchar)
+
+    if Varchar:
+        return {"voucher_id": Varchar.voucher_id,"voucher_name": Varchar.voucher_id,"voucher_date":Varchar.voucher_date}
     else:
-        return {}
+        return HTTPException(status_code=484,datail="そんな資格はないよ")
 
 @app.post("/add")
-def add_voucher_item(ID:str,DATE:str,token:str):
-    return {"message": "voucher was added successfully", "voucher": {{"ID": "FESG" , "DATE": "2024/06/20"}}}
-	
-@app.post("/add")
-def add_voucher_item(voucher_id: Integer, voucher_name: Varchar, voucher_date: DATE, db: Session = Depends(get_db)):
-    new_voucher = new_voucher(voucher_id=voucher_id, voucher_name=voucher_name, voucher_date=voucher_date)
+def add_voucher_item(ID:str,NAME:str,DATE:str,token:str,db: Session = Depends(get_db)):
+    new_voucher = Varchar(voucher_id=ID, voucher_name=NAME,voucher_date=DATE)
+    if new_voucher == "":
+        return {"message":  "空なのでエラー"}
+else:
     db.add(new_voucher)
     db.commit()
     db.refresh(new_voucher)
-    return {"message": "voucher was added successfully", "voucher": {{"ID": "FESG" , "DATE": "2024/06/20"}}}
+	    return {"message": "voucher was added successfully", "voucher": {{"voucher_id": new_voucher.voucher_id ,"voucher_name" :new_voucher.voucher_name, "voucher_date": new_voucher.voucher_date}}}
