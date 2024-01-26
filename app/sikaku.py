@@ -35,7 +35,7 @@ def add_sikaku_item(ID:str,NAME:str,token:str,db: Session = Depends(get_db)):
     if new_sikaku == "":
         return {"message":  "空なのでエラー"}
 else:
-    db.add(sikaku)
+    db.add(new_sikaku)
     db.commit()
     db.refresh(new_sikaku)
 	    return {"message": "voucher was added successfully", "voucher": {{"voucher_id": new_voucher.voucher_id ,"voucher_name" :new_voucher.voucher_name, "voucher_date": new_voucher.voucher_date}}}
