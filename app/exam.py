@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from db import SessionLocal, Exam
+from db import SessionLocal, exam
 
 app = FastAPI()
 
