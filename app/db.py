@@ -28,30 +28,37 @@ class item(Base):
 class exam(Base):
     __tablename__ = "exam"
 
-    exam_id = Column(Integer, primary_key=True, index=True)
+    exam_id = Column(String(30), primary_key=True, index=True)
     exam_name = Column(String(30), index=True)
 
 
 class sikaku(Base):
     __tablename__ = "sikaku"
 
-    sikaku_id = Column(Integer, primary_key=True, index=True)
-    sikaku_name = Column(String(50), index=True)
+    exam_id = Column(String(30), primary_key=True, Foreignkey("exam.exam_id"),index=True)
+    user_id = Column(String(30), primary_key=True, Foreignkey("user.user_id"),index=True)
+    exam_name = Column(String(50), index=True)
     sikaku_date = Column(DateTime)
 
 class voucher(Base):
     __tablename__ = "voucher"
 
-    voucher_id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String(30), primary_key=True, Foreignkey("user.user_id"),index=True)
+    voucher_id = Column(String(30), primary_key=True, Foreignkey("voucher.voucher_id"),index=True)
     voucher_name = Column(String(50), index=True)
     voucher_date = Column(DateTime)
 
 class voucherType(Base):
     __tablename__ = "voucherType"
 
-    voucherType_id = Column(Integer, primary_key=True, index=True)
-    voucherType_name = Column(String(50), index=True)
+    voucher_id = Column(String(30), primary_key=True, index=True)
+    voucher_name = Column(String(50), index=True)
 
+class user (Base):
+    __tablename__ = "user"
+
+    user_id = Column(String(30), primary_key=True, index=True)
+    user_name = Column(String(30), index=True)
 
 
 # テーブルが存在しない場合は作成する
