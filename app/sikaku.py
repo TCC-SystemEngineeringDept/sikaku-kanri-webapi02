@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI Depends, HTTPException
+from sqlalchemy.orm import Session
+from db import SessionLocal, sikaku
 
 app = FastAPI()
 
@@ -8,34 +10,23 @@ vouchers = [
     {"ID": "OR00", "NAME": "Oracle認定資格ピアソンVUE 配信監督なし試験用", "DATE": "2023/12/25"}
 ]
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close():
 
 @app.get("/list")
-def get_sikaku_list(token:str Session = Depends(get_db)):
-    sikaku = db.query(Sikaku).all()
-    return sikaku
+def get_passed_list(token:"str"):
+    if ID == "FF00":
+        return Passed 
 
-@app.get("/{ID}")
-def get_sikaku_item(ID:str,token:str):
-    sikaku = db.query(Sikaku).filter(Sikaku)
-
-    if Sikaku:
-        return {"sikaku_id": Sikaku.sikaku_id,"sikaku_name": Sikaku.sikaku_name}
+@app.get("/{ID}") 
+def get_passed_item(ID:str,token:str):
+    if ID == "FF00"
+        return Passed[0]
+    elif ID == "0R00":
+        return Passed[1]
     else:
-        return HTTPException(status_code=484,datail="そんな資格はないよ")
-
+        return {}
+    
 @app.post("/add")
-def add_sikaku_item(ID:str,NAME:str,DATE:DATE,token:str,db: Session = Depends(get_db)):
-    new_sikaku = Sikaku(sikaku_id=ID, sikaku_name=NAME sikaku_date=DATE)
-    if new_sikaku == "":
-        return {"message":  "空なのでエラー"}
-else:
-    db.add(new_sikaku)
-    db.commit()
-    db.refresh(new_sikaku)
-	    return {"message": "voucher was added successfully", "voucher": {{"voucher_id": new_voucher.voucher_id ,"voucher_name" :new_voucher.voucher_name, "voucher_date": new_voucher.voucher_date}}}
+def add_passed_item(ID:str,DATE:str,token:str):
+    return {"message": "Passed was added succesfuly",
+     "Passed" : {{"ID":"FE00", "DATE": "2022/06/18"},}}
+
