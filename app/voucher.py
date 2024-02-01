@@ -1,5 +1,6 @@
-from fastapi import FastAPI
-from db  import SessionLocal,Voucher
+from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy.orm import Session
+from db import SessionLocal, Voucher
 
 app = FastAPI()
 
@@ -31,7 +32,7 @@ def get_voucher_item(ID:str,token:str):
         return HTTPException(status_code=484,datail="そんな資格はないよ")
 
 @app.post("/add")
-def add_voucher_item(ID:str,NAME:str,DATE:str,token:str,db: Session = Depends(get_db)):
+def add_voucher_item(ID:str,NAME:str,DATE:DateTime,token:str,db: Session = Depends(get_db)):
     new_voucher = Varchar(voucher_id=ID, voucher_name=NAME,voucher_date=DATE)
     if new_voucher == "":
         return {"message":  "空なのでエラー"}
