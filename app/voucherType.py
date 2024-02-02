@@ -17,7 +17,7 @@ def get_db():
         db.close()
 
 @app.get("/list")
-def get_voucherType_list(token:str Session = Depends(get_db)):
+def get_voucherType_list(token:str , db:Session = Depends(get_db)):
     voucherType = db.query(VoucherType).all()
     return voucherType
 
