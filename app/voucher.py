@@ -26,8 +26,8 @@ def get_voucher_list(token:str , db:Session = Depends(get_db)):
 def get_voucher_item(ID:str,token:str, db:Session = Depends(get_db)):
     voucher = db.query(voucher).filter(voucher)
 
-    if Varchar:
-        return {"voucher_id": Varchar.voucher_id,"voucher_name": Varchar.voucher_id,"voucher_date":Varchar.voucher_date}
+    if voucher:
+        return {"voucher_id": voucher.voucher_id,"voucher_name": voucher.voucher_id,"voucher_date":voucher.voucher_date}
     else:
         return HTTPException(status_code=484,datail="そんな資格はないよ")
 
