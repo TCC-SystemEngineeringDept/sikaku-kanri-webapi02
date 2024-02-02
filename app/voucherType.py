@@ -17,12 +17,12 @@ def get_db():
         db.close()
 
 @app.get("/list")
-def get_voucherType_list(token:str , db:Session = Depends(get_db)):
+def get_voucherType_list(token:str, db:Session = Depends(get_db)):
     voucherTypes = db.query(VoucherType).all()
     return voucherType
 
 @app.get("/{ID}")
-def get_voucherType_item(ID:str,token:str):
+def get_voucherType_item(ID:str,token:str, db:Session = Depends(get_db)):
     VoucherType = db.query(VoucherType).filter(VoucherType)
 
     if Varchar:

@@ -23,7 +23,7 @@ def get_voucher_list(token:str , db:Session = Depends(get_db)):
     return vouchers
 
 @app.get("/{ID}")
-def get_voucher_item(ID:str,token:str):
+def get_voucher_item(ID:str,token:str, db:Session = Depends(get_db)):
     voucher = db.query(voucher).filter(voucher)
 
     if Varchar:
