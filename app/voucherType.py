@@ -28,7 +28,7 @@ def get_voucherType_item(ID:str,token:str, db:Session = Depends(get_db)):
     if vt:
         return {"voucher_id": voucherType.voucher_id,"voucher_name": voucherType.voucher_name}
     else:
-        return HTTPException(status_code=484,datail="そんな資格はないよ")
+        return HTTPException(status_code=484,detail="そんな資格はないよ")
 
 @app.post("/add")
 def add_voucher_item(ID:str,NAME:str,DATE:str,token:str,db: Session = Depends(get_db)):
