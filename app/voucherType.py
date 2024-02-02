@@ -4,7 +4,7 @@ from db import SessionLocal, voucherType
 app = FastAPI()
 
 # 商品リストのデータ
-voucherTypes = [
+VoucherTypes = [
     {"ID": "FESG", "NAME": "FE/SG受験バウチャー", "DATE": "2024/06/20"},
     {"ID": "OR00", "NAME": "Oracle認定資格ピアソンVUE 配信監督なし試験用", "DATE": "2023/12/25"}
 ]
@@ -23,7 +23,7 @@ def get_voucherType_list(token:str, db:Session = Depends(get_db)):
 
 @app.get("/{ID}")
 def get_voucherType_item(ID:str,token:str, db:Session = Depends(get_db)):
-    VoucherType = db.query(VoucherType).filter(VoucherType)
+    voucherType = db.query(VoucherType).filter(VoucherType)
 
     if voucherType:
         return {"voucher_id": VoucherType.voucher_id,"voucher_name": VoucherType.voucher_name}
