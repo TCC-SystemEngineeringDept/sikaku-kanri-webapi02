@@ -19,12 +19,12 @@ def get_db():
 
 @app.get("/list")
 def get_voucher_list(token:str , db:Session = Depends(get_db)):
-    vouchers = db.query(voucher).all()
+    vouchers = db.query(Voucher).all()
     return vouchers
 
 @app.get("/{ID}")
 def get_voucher_item(ID:str,token:str, db:Session = Depends(get_db)):
-    voucher = db.query(voucher).filter(voucher.voucher_id == ID).first()
+    voucher = db.query(Voucher).filter(Voucher.voucher_id == ID).first()
 
     if voucher:
         return {"voucher_id": voucher.voucher_id,"voucher_name": voucher.voucher_id,"voucher_date":voucher.voucher_date}
@@ -33,7 +33,7 @@ def get_voucher_item(ID:str,token:str, db:Session = Depends(get_db)):
 
 @app.post("/add")
 def add_voucher_item(ID:str,NAME:str,DATE:str,token:str,db: Session = Depends(get_db)):
-    new_voucher = voucher(voucher_id=ID, voucher_name=NAME,voucher_date=DATE)
+    new_voucher = Voucher(voucher_id=ID, voucher_name=NAME,voucher_date=DATE)
     if new_voucher == "":
         return {"message":  "空なのでエラー"}
     else:
