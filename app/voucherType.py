@@ -1,4 +1,3 @@
-from sqlalchemy import DateTime
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db import SessionLocal, voucherType
@@ -32,7 +31,7 @@ def get_voucherType_item(ID:str,token:str):
         return HTTPException(status_code=484,datail="そんな資格はないよ")
 
 @app.post("/add")
-def add_voucher_item(ID:str,NAME:str,DATE:DateTime,token:str,db: Session = Depends(get_db)):
+def add_voucher_item(ID:str,NAME:str,DATE:str,token:str,db: Session = Depends(get_db)):
     new_voucherType = VoucherType(voucher_id=ID, voucher_name=NAME)
     if new_voucherType == "":
         return {"message":  "空なのでエラー"}

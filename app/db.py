@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.schema import ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -39,7 +39,7 @@ class sikaku(Base):
     exam_id = Column(String(30), ForeignKey("exam.exam_id"), primary_key=True,index=True)
     user_id = Column(String(30), ForeignKey("user.user_id"), primary_key=True, index=True)
     exam_name = Column(String(50), index=True)
-    sikaku_date = Column(DateTime)
+    sikaku_date = Column(String(15))
 
 class voucher(Base):
     __tablename__ = "voucher"
@@ -47,7 +47,7 @@ class voucher(Base):
     user_id = Column(String(30), ForeignKey("user.user_id"), primary_key=True, index=True)
     voucher_id = Column(String(30), ForeignKey("voucher.voucher_id"), primary_key=True,index=True)
     voucher_name = Column(String(50), index=True)
-    voucher_date = Column(DateTime)
+    voucher_date = Column(String(15))
 
 class voucherType(Base):
     __tablename__ = "voucherType"
