@@ -39,4 +39,4 @@ def add_voucher_item(ID:str,NAME:str,DATE:DateTime,token:str,db: Session = Depen
         db.add(new_voucherType)
         db.commit()
         db.refresh(new_voucherType)
-            return {"message": "voucher was added successfully", "voucher": {{"voucher_id": new_voucherType.voucher_id ,"voucher_name" :new_voucherType.voucher_name}}}
+        return {"message": "voucher was added successfully", "voucher": {"voucher_id": new_voucherType.voucher_id ,"voucher_name" :new_voucherType.voucher_name}}
