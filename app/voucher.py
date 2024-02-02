@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from db import SessionLocal, Voucher
+from db import SessionLocal, voucher
 
 app = FastAPI()
 

@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from db import SessionLocal, VoucherType
+from db import SessionLocal, voucherType
 app = FastAPI()
 
 # 商品リストのデータ
