@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
-from sqlalchemy.schema import Foreignkey
+from sqlalchemy.schema import ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -36,16 +36,16 @@ class exam(Base):
 class sikaku(Base):
     __tablename__ = "sikaku"
 
-    exam_id = Column(String(30), Foreignkey("exam.exam_id"), primary_key=True,index=True)
-    user_id = Column(String(30), Foreignkey("user.user_id"), primary_key=True, index=True)
+    exam_id = Column(String(30), ForeignKey("exam.exam_id"), primary_key=True,index=True)
+    user_id = Column(String(30), ForeignKey("user.user_id"), primary_key=True, index=True)
     exam_name = Column(String(50), index=True)
     sikaku_date = Column(DateTime)
 
 class voucher(Base):
     __tablename__ = "voucher"
 
-    user_id = Column(String(30), Foreignkey("user.user_id"), primary_key=True, index=True)
-    voucher_id = Column(String(30), Foreignkey("voucher.voucher_id"), primary_key=True,index=True)
+    user_id = Column(String(30), ForeignKey("user.user_id"), primary_key=True, index=True)
+    voucher_id = Column(String(30), ForeignKey("voucher.voucher_id"), primary_key=True,index=True)
     voucher_name = Column(String(50), index=True)
     voucher_date = Column(DateTime)
 
