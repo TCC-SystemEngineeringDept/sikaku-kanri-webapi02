@@ -18,7 +18,7 @@ def get_db():
         db.close()
 
 @app.get("/list")
-def get_voucher_list(token:str Session = Depends(get_db)):
+def get_voucher_list(token:str , db:Session = Depends(get_db)):
     vouchers = db.query(Varchar).all()
     return vouchers
 
