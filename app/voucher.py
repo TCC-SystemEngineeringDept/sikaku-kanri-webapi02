@@ -5,7 +5,7 @@ from db import SessionLocal, voucher
 app = FastAPI()
 
 # 商品リストのデータ
-vouchers = [
+Vouchers = [
     {"ID": "FESG", "NAME": "FE/SG受験バウチャー", "DATE": "2024/06/20"},
     {"ID": "OR00", "NAME": "Oracle認定資格ピアソンVUE 配信監督なし試験用", "DATE": "2023/12/25"}
 ]
@@ -33,7 +33,7 @@ def get_voucher_item(ID:str,token:str, db:Session = Depends(get_db)):
 
 @app.post("/add")
 def add_voucher_item(ID:str,NAME:str,DATE:str,token:str,db: Session = Depends(get_db)):
-    new_voucher = Varchar(voucher_id=ID, voucher_name=NAME,voucher_date=DATE)
+    new_voucher = voucher(voucher_id=ID, voucher_name=NAME,voucher_date=DATE)
     if new_voucher == "":
         return {"message":  "空なのでエラー"}
     else:
