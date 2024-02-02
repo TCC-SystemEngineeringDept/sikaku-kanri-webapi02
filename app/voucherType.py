@@ -17,7 +17,7 @@ def get_db():
         db.close():
 
 @app.get("/list")
-def get_voucherTyper_list(token:str Session = Depends(get_db)):
+def get_voucherType_list(token:str Session = Depends(get_db)):
     voucherType = db.query(VoucherType).all()
     return voucherType
 
@@ -26,17 +26,17 @@ def get_voucherType_item(ID:str,token:str):
     Varchar = db.query(VoucherType).filter(VoucherType)
 
     if Varchar:
-        return {"voucherType_id": VoucherType.voucherType_id,"voucherType_name": VoucherType.voucherType_name}
+        return {"voucher_id": VoucherType.voucher_id,"voucher_name": VoucherType.voucher_name}
     else:
         return HTTPException(status_code=484,datail="そんな資格はないよ")
 
 @app.post("/add")
 def add_voucher_item(ID:str,NAME:str,DATE:DateTime,token:str,db: Session = Depends(get_db)):
-    new_voucherType = VoucherType(voucherType_id=ID, voucherType_name=NAME)
+    new_voucherType = VoucherType(voucher_id=ID, voucher_name=NAME)
     if new_voucherType == "":
         return {"message":  "空なのでエラー"}
-else:
-    db.add(new_voucherType)
-    db.commit()
-    db.refresh(new_voucherType)
-	    return {"message": "voucher was added successfully", "voucher": {{"voucherType_id": new_voucherType.voucherType_id ,"voucherType_name" :new_voucherType.voucherType_name}}}
+    else:
+        db.add(new_voucherType)
+        db.commit()
+        db.refresh(new_voucherType)
+            return {"message": "voucher was added successfully", "voucher": {{"voucher_id": new_voucherType.voucher_id ,"voucher_name" :new_voucherType.voucher_name}}}
