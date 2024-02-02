@@ -45,7 +45,7 @@ class voucher(Base):
     __tablename__ = "voucher"
 
     user_id = Column(String(30), ForeignKey("user.user_id"), primary_key=True, index=True)
-    voucher_id = Column(String(30), ForeignKey("voucher.voucher_id"), primary_key=True,index=True)
+    voucher_id = Column(String(30), primary_key=True,index=True)
     voucher_name = Column(String(50), index=True)
     voucher_date = Column(String(15))
 
