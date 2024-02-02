@@ -14,7 +14,7 @@ def get_db():
     try:
         yield db
     finally:
-        db.close():
+        db.close()
 
 @app.get("/list")
 def get_voucherType_list(token:str Session = Depends(get_db)):
