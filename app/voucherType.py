@@ -23,7 +23,7 @@ def get_voucherType_list(token:str, db:Session = Depends(get_db)):
 
 @app.get("/{ID}")
 def get_voucherType_item(ID:str,token:str, db:Session = Depends(get_db)):
-    voucherType = db.query(VoucherType).filter(VoucherType)
+    voucherType = db.query(VoucherType).filter(VoucherType.voucher_id == ID).first()
 
     if voucherType:
         return {"voucher_id": VoucherType.voucher_id,"voucher_name": VoucherType.voucher_name}
