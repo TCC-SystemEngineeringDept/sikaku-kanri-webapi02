@@ -18,7 +18,7 @@ def get_passed_list(token:"str"):
 
 @app.get("/{ID}") 
 def get_passed_item(ID:str,token:str):
-    if ID == "FF00"
+    if ID == "FF00":
         return Passed[0]
     elif ID == "0R00":
         return Passed[1]
