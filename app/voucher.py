@@ -19,12 +19,12 @@ def get_db():
 
 @app.get("/list")
 def get_voucher_list(token:str , db:Session = Depends(get_db)):
-    vouchers = db.query(Varchar).all()
+    vouchers = db.query(voucher).all()
     return vouchers
 
 @app.get("/{ID}")
 def get_voucher_item(ID:str,token:str):
-    Varchar = db.query(Varchar).filter(Varchar)
+    voucher = db.query(voucher).filter(voucher)
 
     if Varchar:
         return {"voucher_id": Varchar.voucher_id,"voucher_name": Varchar.voucher_id,"voucher_date":Varchar.voucher_date}
