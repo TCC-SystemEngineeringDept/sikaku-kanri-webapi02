@@ -36,8 +36,8 @@ def add_voucher_item(ID:str,NAME:str,DATE:DateTime,token:str,db: Session = Depen
     new_voucher = Varchar(voucher_id=ID, voucher_name=NAME,voucher_date=DATE)
     if new_voucher == "":
         return {"message":  "空なのでエラー"}
-else:
-    db.add(new_voucher)
-    db.commit()
-    db.refresh(new_voucher)
-	    return {"message": "voucher was added successfully", "voucher": {{"voucher_id": new_voucher.voucher_id ,"voucher_name" :new_voucher.voucher_name, "voucher_date": new_voucher.voucher_date}}}
+    else:
+        db.add(new_voucher)
+        db.commit()
+        db.refresh(new_voucher)
+            return {"message": "voucher was added successfully", "voucher": {{"voucher_id": new_voucher.voucher_id ,"voucher_name" :new_voucher.voucher_name, "voucher_date": new_voucher.voucher_date}}}
