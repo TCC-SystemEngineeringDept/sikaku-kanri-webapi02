@@ -19,13 +19,13 @@ def get_db():
 
 @app.get("/list")
 def get_exam_list(token:str, db: Session = Depends(get_db)):
-    exams = db.query(Exam).all()
+    exams = db.query(exam).all()
     return exams
 
 @app.get("/{ID}")
-def get_exam_item(ID:str,token:str):
-    exam = db.query(Exam).filler(Exam.exam_id == ID).first()
-    if exam:
+def get_exam_item(ID:str,token:str,db: Session = Depends(get_db)):
+    ex = db.query(exam).filter(exam.exam_id == ID).first()
+    if ex:
         return {"exam_id": exam.exam_id, "exam_name": exam.exam_name}
     else:
         raise HTTPException(status_code=404, detail="そんな試験あるわけないだろ")
