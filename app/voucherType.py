@@ -18,15 +18,15 @@ def get_db():
 
 @app.get("/list")
 def get_voucherType_list(token:str, db:Session = Depends(get_db)):
-    voucherTypes = db.query(voucherType).all()
+    voucherTypes = db.query(VoucherTypes).all()
     return voucherTypes
 
 @app.get("/{ID}")
 def get_voucherType_item(ID:str,token:str, db:Session = Depends(get_db)):
-    vt = db.query(voucherType).filter(voucherType.voucher_id == ID).first()
+    vt = db.query(VoucherTypes).filter(VoucherTypes.voucher_id == ID).first()
 
     if vt:
-        return {"voucher_id": voucherType.voucher_id,"voucher_name": voucherType.voucher_name}
+        return {"voucher_id": VoucherTypes.voucher_id,"voucher_name": VoucherTypes.voucher_name}
     else:
         return HTTPException(status_code=484,detail="そんな資格はないよ")
 
